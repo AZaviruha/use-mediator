@@ -18,7 +18,7 @@ const FooComponent = () => {
   const { send } = useMediator()
   
   const myHandler = async () => {
-    const result = await send<PayloadType>(Events.GetBarStatus, payload)
+    const result = await send<PayloadType>(Events.RefreshBarStatus, payload)
     // ...
   }
   
@@ -40,7 +40,7 @@ const BarComponent = () => {
     /*... */
   }
 
-  useSubscribe(EVENT_NAME, async <ResultType, PayloadType>(payload, skip) => {
+  useSubscribe(Events.RefreshBarStatus, async <ResultType, PayloadType>(payload, skip) => {
     const result = await loadFreshStatus({ ...internalState, ...payload })
     return result
   })
